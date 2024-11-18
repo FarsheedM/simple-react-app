@@ -1,27 +1,47 @@
-import { Grid, View, useTheme } from '@aws-amplify/ui-react';
-import { Button } from '@aws-amplify/ui-react';
+import {Menu, MenuItem} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import {Grid, View, useTheme} from '@aws-amplify/ui-react';
 
+
+export const BasicExample = () => {
+    return (
+        <View width="4rem">
+            <Menu>
+                <MenuItem>Option 1</MenuItem>
+                <MenuItem>Option 2</MenuItem>
+                <MenuItem>Option 3</MenuItem>
+            </Menu>
+        </View>
+    );
+};
 
 function App() {
-  const { tokens } = useTheme();
-  return (
-   <>
-    <p>test</p>
+    const {tokens} = useTheme();
+    return (
+        <>
+            <p>test</p>
 
-    
-    <Grid
-      templateColumns="1fr 1fr"
-      templateRows="10rem 10rem"
-      gap={tokens.space.small}
-    >
-      <View backgroundColor={tokens.colors.blue[10]}><Button>Hello world</Button></View>
-      <View backgroundColor={tokens.colors.blue[20]}></View>
-      <View backgroundColor={tokens.colors.blue[40]}></View>
-      <View backgroundColor={tokens.colors.blue[60]}></View>
-    </Grid>
-   </>
-  );
+            <BasicExample></BasicExample>
+
+
+            <Grid
+                templateColumns={{base: '1fr', large: '1fr 1fr'}}
+                templateRows={{base: 'repeat(4, 10rem)', large: 'repeat(3, 10rem)'}}
+                gap={tokens.space.small}
+            >
+                <View
+                    columnSpan={[1, 1, 1, 2]}
+                    backgroundColor={tokens.colors.pink[10]}
+                ></View>
+                <View
+                    rowSpan={{base: 1, large: 2}}
+                    backgroundColor={tokens.colors.pink[20]}
+                ></View>
+                <View backgroundColor={tokens.colors.pink[40]}></View>
+                <View backgroundColor={tokens.colors.pink[60]}></View>
+            </Grid>
+        </>
+    );
 }
 
 export default App;
